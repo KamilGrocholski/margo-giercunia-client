@@ -12,6 +12,19 @@ module.exports = {
     },
 
     extend: {
+
+      animation: {
+        'pulse-bg-infinite': 'pulse-bg 2s ease-in infinite'
+      },
+
+      keyframes: {
+        'pulse-bg': {
+          '0%': { backgroundColor: 'var(--tw-gradient-from)' },
+          '50%': { backgroundColor: 'var(--tw-gradient-to)' },
+          '100%': { backgroundColor: 'var(--tw-gradient-from)' },
+        },
+      },
+
       colors: {
         primary: '#FFB718',
         secondary: '#189bff',

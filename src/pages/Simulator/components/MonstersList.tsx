@@ -1,70 +1,15 @@
+import { useQuery } from "@tanstack/react-query"
 import React from "react"
-import useCurrentMonster from "../../../zustandStore/useCurrentMonster"
-
-export interface IMonster {
-    name: string
-    lvl: number
-    img: string  
-}
-
-export const MONSTERS_LIST: IMonster[] = [
-    {
-        name: 'Mamlambo',
-        lvl: 36,
-        img: 'https://micc.garmory-cdn.cloud/obrazki/npc/kol/mamlambo_final2.gif'
-    },
-    {
-        name: 'Regulus Mętnooki',
-        lvl: 63,
-        img: 'https://micc.garmory-cdn.cloud/obrazki/npc/kol/bazyliszek.gif'
-    },
-    {
-        name: 'Umibozu',
-        lvl: 90,
-        img: 'https://micc.garmory-cdn.cloud/obrazki/npc/kol/kolos-wodnik.gif'
-    },
-    {
-        name: 'Amaimon Soploręki',
-        lvl: 117,
-        img: 'https://micc.garmory-cdn.cloud/obrazki/npc/kol/soploreki.gif'
-    },
-    {
-        name: 'Hydrokora Chimeryczna',
-        lvl: 144,
-        img: 'https://micc.garmory-cdn.cloud/obrazki/npc/kol/hydrokora.gif'
-    },
-    {
-        name: 'Vashkar',
-        lvl: 171,
-        img: 'https://micc.garmory-cdn.cloud/obrazki/npc/kol/kolos-wazka.gif'
-    },
-    {
-        name: 'Lulukav',
-        lvl: 198,
-        img: 'https://micc.garmory-cdn.cloud/obrazki/npc/kol/kolkrucz.gif'
-    },
-    {
-        name: 'Arachin Podstępny',
-        lvl: 225,
-        img: 'https://micc.garmory-cdn.cloud/obrazki/npc/kol/kolos-pajak.gif'
-    },
-    {
-        name: 'Reuzen',
-        lvl: 252,
-        img: 'https://micc.garmory-cdn.cloud/obrazki/npc/kol/kolos-dendro.gif'
-    },
-    {
-        name: 'Wernoradzki Drakolisz',
-        lvl: 279,
-        img: 'https://micc.garmory-cdn.cloud/obrazki/npc/kol/kolos-drakolisz.gif'
-    }
-]
+import { getAllMonsters, IMonster } from "../../../api/monstersAPI"
+import useSimulator from "../../../store/SimulatorStore"
 
 export const Monster = (monster: IMonster) => {
-    const { changeCurrentMonster } = useCurrentMonster()
+
+    const { setCurrentMonster } = useSimulator()
+
     const handleSetMonster = (e: React.MouseEvent<HTMLButtonElement>) => {
         e.preventDefault()
-        changeCurrentMonster(monster)
+        setCurrentMonster(monster)
     }
 
     return (
@@ -90,12 +35,40 @@ export const Monster = (monster: IMonster) => {
     )
 }
 
-const MonstersList = ({ monstersList }: { monstersList: IMonster[] }) => {
+export const MonstersList = () => {
+
+    const { isLoading, isError, error, data: monstersList } = useQuery<IMonster[]>(['monstersList'], getAllMonsters)
+
+    if (isLoading)
+    return (
+        <div>
+            Loading...
+        </div>
+    )
+    if (isError) 
+    return (
+        <div>
+            { JSON.stringify(error) }
+        </div>
+    )
+    if (monstersList)
     return (
         <div className='grid grid-cols-5 gap-5'>
             {monstersList.map((monster, i) => (
-                <Monster key={ i } { ...monster } />
+                <Monster 
+                    key={ i } 
+                    name={ monster.name }
+                    type={ monster.type }
+                    lvl={ monster.lvl }
+                    img={ monster.img }
+                    items={ monster.items }
+                />
             ))}
+        </div>
+    )
+    return (
+        <div>
+            dziwne
         </div>
     )
 }

@@ -33,7 +33,7 @@ const NavItem = (item: INavItemPROPS) => {
 const Nav = () => {
   return (
     <nav
-        className='flex flex-col w-1/5 h-full pl-24 pr-3 space-y-3'
+        className='flex flex-col w-1/5 h-full pl-24 pr-3 space-y-3 border'
     >
         <Link
             to='/'

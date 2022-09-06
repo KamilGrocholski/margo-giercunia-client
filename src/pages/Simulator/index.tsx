@@ -1,92 +1,21 @@
-import useCurrentMonster from "../../zustandStore/useCurrentMonster"
-import ItemsWindow, { IItem } from "./components/ItemsWindow"
-import MonstersList, { Monster, MONSTERS_LIST } from "./components/MonstersList"
+import useSimulator from "../../store/SimulatorStore"
+import Monster from "./components/CurrentMonster"
+import ItemsWindow from "./components/ItemsWindow"
+import MonstersList from "./components/MonstersList"
 
-const ITEMS: IItem[] = [
-    {
-        name: 'Hełm',
-        rarity: 'legendary',
-        lvl: 63,
-        monster: 'Regulus mętnooki',
-        img: 'https://micc.garmory-cdn.cloud/obrazki/itemy//hel/helm254.gif'
-    },
-    {
-        name: 'Hełm',
-        rarity: 'legendary',
-        lvl: 63,
-        monster: 'Regulus mętnooki',
-        img: 'https://micc.garmory-cdn.cloud/obrazki/itemy//hel/helm254.gif'
-    },
-    {
-        name: 'Hełm',
-        rarity: 'legendary',
-        lvl: 63,
-        monster: 'Regulus mętnooki',
-        img: 'https://micc.garmory-cdn.cloud/obrazki/itemy//hel/helm254.gif'
-    },
-    {
-        name: 'Hełm',
-        rarity: 'legendary',
-        lvl: 63,
-        monster: 'Regulus mętnooki',
-        img: 'https://micc.garmory-cdn.cloud/obrazki/itemy//hel/helm254.gif'
-    },
-    {
-        name: 'Hełm',
-        rarity: 'legendary',
-        lvl: 63,
-        monster: 'Regulus mętnooki',
-        img: 'https://micc.garmory-cdn.cloud/obrazki/itemy//hel/helm254.gif'
-    },
-    {
-        name: 'Hełm',
-        rarity: 'legendary',
-        lvl: 63,
-        monster: 'Regulus mętnooki',
-        img: 'https://micc.garmory-cdn.cloud/obrazki/itemy//hel/helm254.gif'
-    },
-    {
-        name: 'Hełm',
-        rarity: 'legendary',
-        lvl: 63,
-        monster: 'Regulus mętnooki',
-        img: 'https://micc.garmory-cdn.cloud/obrazki/itemy//hel/helm254.gif'
-    },
-    {
-        name: 'Hełm',
-        rarity: 'legendary',
-        lvl: 63,
-        monster: 'Regulus mętnooki',
-        img: 'https://micc.garmory-cdn.cloud/obrazki/itemy//hel/helm254.gif'
-    },
-    {
-        name: 'Hełm',
-        rarity: 'legendary',
-        lvl: 63,
-        monster: 'Regulus mętnooki',
-        img: 'https://micc.garmory-cdn.cloud/obrazki/itemy//hel/helm254.gif'
-    },
-    {
-        name: 'Hełm',
-        rarity: 'legendary',
-        lvl: 63,
-        monster: 'Regulus mętnooki',
-        img: 'https://micc.garmory-cdn.cloud/obrazki/itemy//hel/helm254.gif'
-    }
-]
 
 const Simulator = () => {
-    const { currentMonster } = useCurrentMonster()
+
+    const { currentMonster, items, isWindowOpen } = useSimulator()
+
   return (
-    <div className='flex items-center justify-center w-full h-full flex-col space-y-12'>
-        <MonstersList monstersList={ MONSTERS_LIST } />
+    <div className='flex items-center justify-center w-full h-full flex-col space-y-12 border'>
+        <MonstersList />
         {currentMonster &&
-        <>
-            <ItemsWindow items={ ITEMS } />
-            <Monster 
-                { ...currentMonster }
-            />
-        </>}
+        <div className='relative w-full h-full border flex items-center justify-center'>
+            {items && isWindowOpen && <ItemsWindow items={ items } />}
+            <Monster />
+        </div>}
     </div>
   )
 }

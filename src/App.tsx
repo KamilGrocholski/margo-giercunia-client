@@ -10,7 +10,13 @@ import Home from './pages/Home'
 import Simulator from './pages/Simulator/index'
 import Statistics from './pages/Statistics'
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    }
+  }
+})
 
 function App() {
 
