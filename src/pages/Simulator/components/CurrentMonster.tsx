@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { getRandomItems } from "../../../api/simulatorAPI"
 import useSimulator from "../../../store/SimulatorStore"
+import { getRandomItems } from "../../../api/simulatorAPI"
 
 export const CurrentMonster = () => {
 
@@ -12,7 +12,7 @@ export const CurrentMonster = () => {
             e.preventDefault()
             setIsLoading(true)
             const newItems = await getRandomItems(currentMonster?.name)
-            if (newItems)
+            if (!newItems) return 
             !isWindowOpen && setItems(newItems)
             setIsWindowOpen(true)
         } catch (err) {

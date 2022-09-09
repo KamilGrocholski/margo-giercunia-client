@@ -34,15 +34,15 @@ export const Item = ({ item, n }: { item: ISimulatorItem, n: number }) => {
         <div
             onClick={ handleOpen }
             
-            className={ `relative hover:animate-pulse-bg-infinite 
+            className={ `relative ${ items && !items[n].isOpen && 'hover:animate-pulse-bg-infinite' } 
             ${ item.rarity === 'legendary' ? 
-            'from-orange-500/30 to-orange-500/50' :
+            'from-rarities-legendary/60 to-rarities-legendary' :
             item.rarity === 'heroic' ?
-            'from-blue-500/30 to-blue-500-50' :
+            'from-rarities-heroic/60 to-rarities-heroic' :
             item.rarity === 'rare' ?
-            'from-yellow-500/30 to-yellow-500/50' :
+            'from-rarities-rare/60 to-rarities-rare' :
             'from-gray-500/30 to-gray-500/50'}
-             shadow-black flex items-center justify-center w-16 h-16 outline outline-gray-700 rounded-lg bg-gray-900` }
+             shadow-black flex items-center justify-center w-16 h-16 outline outline-1 outline-gray-700 rounded-lg bg-gray-900` }
         >
             {items && items[n] && items[n].isOpen
                 ? 
@@ -79,7 +79,7 @@ export const ItemsWindow =  ({ items }: {items: ISimulatorItem[] }) => {
     }
 
     return (
-        <div className='flex flex-col space-y-8 z-10 absolute top-0 right-1/5 left-1/5 h-fit items-center justify-center bg-gray-900/90 p-3'>
+        <div className='flex flex-col space-y-8 z-20 absolute top-0 right-1/5 left-1/5 h-fit items-center justify-center bg-gray-900/90 p-3'>
             <div className='grid grid-cols-5 gap-3 h-full w-full'>
                 {items.map((item, i) => (
                     <Item 

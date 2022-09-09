@@ -1,4 +1,4 @@
-import axios from './axios'
+import axios, { axiosPrivate } from './axios'
 import { IItem } from './itemsAPI'
 
 export interface IMonster {
@@ -11,6 +11,12 @@ export interface IMonster {
 
 export const getAllMonsters = async () => {
     const result = await axios.get<IMonster[]>('/monsters')
+    console.log(result.data)
+    return result.data
+}
+
+export const createMonster = async ({ name, lvl, img, type }: { name: IMonster['name'], lvl: IMonster['lvl'], img: IMonster['img'], type: IMonster['type'] }) => {
+    const result = await axiosPrivate.post<IMonster>('/monsters', { name, lvl, img, type })
     console.log(result.data)
     return result.data
 }

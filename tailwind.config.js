@@ -14,7 +14,7 @@ module.exports = {
     extend: {
 
       animation: {
-        'pulse-bg-infinite': 'pulse-bg 2s ease-in infinite'
+        'pulse-bg-infinite': 'pulse-bg 1s ease-in infinite'
       },
 
       keyframes: {
@@ -34,7 +34,13 @@ module.exports = {
           light: '#212838',
           medium: '#121725',
           strong: '#121725',
-        }
+        },
+        rarities: {
+          'common': '#ffffff',
+          'rare': '#e6cc80',
+          'heroic': '#0070dd',
+          'legendary': '#ff8000'
+      }
       }
     },
   },

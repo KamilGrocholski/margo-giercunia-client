@@ -1,9 +1,11 @@
-import axios from './axios'
+
+import { axiosPrivate } from './axios'
 import { IItem } from './itemsAPI'
+
 
 export const getRandomItems = async (monster?: string) => {
     if (!monster) return 
-    const result = await axios.get<IItem[]>(`/items/random?monster=${ monster }`)
+    const result = await axiosPrivate.get<IItem[]>(`/simulator/randomItems?monster=${ monster }`)
     console.log(result)
     return result.data
 }

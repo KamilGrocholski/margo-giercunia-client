@@ -14,7 +14,6 @@ export interface ISimulatorState {
     items: ISimulatorItem[] | null
     setItems: (items: IItem[]) => void
     openItem: (n: number) => void
-
 } 
 
 const useSimulator = create<ISimulatorState>(set => ({
