@@ -15,7 +15,7 @@ export const Monster = (monster: IMonster) => {
     return (
         <button 
             onClick={ handleSetMonster }
-            className='flex flex-col items-center justify-between w-48 h-48 p-3 bg-gray-900 rounded-lg hover:outline hover:outline-cyan-500'
+            className='flex flex-col items-center justify-between w-48 h-48 p-3 drop-shadow-lg shadow-black shadow bg-texture-strong rounded-lg hover:outline hover:outline-primary'
             >
             <div className='flex flex-row justify-between space-x-3 w-full'> 
                 <div className='font-semibold text-md'>

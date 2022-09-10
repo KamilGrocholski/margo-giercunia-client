@@ -14,29 +14,30 @@ export interface IUser {
 }
 
 export const register = async ({ username, password }: { username: string, password: string }) => {
-    const result = await axios.post('/users/register', { username, password })
-    return result.data
+    const result = await axios.post<{ msg: string, status: string }>('/users/register', { username, password })
+        .then(res => res.data)
+        .catch(err => err.response.data)
+    return result
 }
 
 export const login = async ({ username, password }: { username: string, password: string }) => {
-    const result = await axios.post('/users/login', { username, password }, { withCredentials: true })
-    return result.data
+    const result = await axios.post<{ accessToken?: string, msg: string, status: string }>('/users/login', { username, password }, { withCredentials: true })
+        .then(res => res.data)
+        .catch(err => err.response.data)
+    return result
 }
 
 export const logout = async () => {
     const result = await axios.get('/users/logout', { withCredentials: true })
-    console.log(result)
     return result
 }
 
 export const refresh = async () => {
     const result = await axios.get('/users/refresh', { withCredentials: true })
-    console.log(result)
     return result.data
 } 
 
 export const getUsersByMonstersKills = async () => {
     const result = await axios.get<IUser[]>('/users/byMonstersKills')
-    console.log(result)
     return result.data
 }

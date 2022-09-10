@@ -1,26 +1,26 @@
-import FormItem from "./components/FormItem"
-import FormMonster from "./components/FormMonster"
 import Monsters from "./components/Monsters"
 import useAdminPanel from "../../store/AdminPanelStore"
+import MonsterEdit from "./components/MonsterEdit"
+import MonsterCreate from "./components/MonsterCreate"
+import Items from "./components/Items"
+import ItemCreate from "./components/ItemCreate"
+import ItemEdit from "./components/ItemEdit"
 
 const AdminPanel = () => {
 
-  const { window, setWindow } = useAdminPanel()
+  const { window, itemsWindow } = useAdminPanel()
 
   return (
-    <div className='min-w-screen flex flex-col justify-center items-center space-y-3'>
-      <div className='flex flex-row space-x-3'>
-        <button className={ `p-1 ${ window === 'monsters' && 'outline outline-sky-500 outline-1' }` } onClick={ () => setWindow('monsters') }>Stwórz potwora</button>
-        <button className={ `p-1 ${ window === 'items' && 'outline outline-sky-500 outline-1' }` } onClick={ () => setWindow('items') }>Stwórz przedmiot</button>
+    <div className='flex flex-col items-center justify-center space-y-3 min-w-screen'>
+      <div className='flex flex-row space-x-5'>
+        { window === 'monstersEditing' && <MonsterEdit /> }
+        { window === 'monstersCreation' && <MonsterCreate /> }
+        <div className='flex flex-row p-3 space-x-3 border'>
+          { window === 'monstersEditing' && <Items /> }
+          { itemsWindow === 'itemsEditing' && window === 'monstersEditing' && <ItemEdit /> }
+          { itemsWindow === 'itemsCreation' && window === 'monstersEditing' && <ItemCreate /> }
+        </div>
       </div>
-      {window === 'monsters' &&
-      <>
-        <FormMonster />
-      </>}
-      {window === 'items' &&
-      <>
-        <FormItem />
-      </>}
       <Monsters />
     </div>
   )

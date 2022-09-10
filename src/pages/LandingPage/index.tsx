@@ -1,30 +1,20 @@
-import { useQuery } from "@tanstack/react-query"
-import { getUsersByMonstersKills } from "../../api/userAPI"
+import { Link } from "react-router-dom"
+import Session from "../../store/SesstionStore"
+import Rank from "./components/Rank"
 
 const LandingPage = () => {
 
-    const { data, isError, isLoading, error } = useQuery(['usersByMonstersKills'], () => getUsersByMonstersKills())
+  const { accessToken, role } = Session()
 
   return (
-    <div className='w-full h-full flex items-center justify-center flex-col'>
-        <div className='flex flex-col border p-3'>
-            {data &&
-            data.map((user, i) => (
-                <div key={ i } className='flex flex-col w-64'>
-                    <div className='flex flex-row justify-between'>
-                        <div>
-                            { user.username }
-                        </div>
-                    </div>
-                    <div>PT: { user.totalStats.monstersKills }</div>
-                    <div className='flex flex-row space-x-3 justify-center items-center'>
-                        <div>Ż: { user.totalStats.itemsByRarity.rare }</div>
-                        <div>H: { user.totalStats.itemsByRarity.heroic }</div>
-                        <div>L: { user.totalStats.itemsByRarity.legendary }</div>
-                    </div>
-                </div>
-            ))}
-        </div>
+    <div className='w-full h-full flex items-center justify-center flex-col space-y-12'>
+        <Link
+          to={ accessToken && role ? '/symulator' : '/rejestracja' }
+          className='rounded-md bg-primary text-2xl font-semibold drop-shadow-lg shadow shadow-black text-black text-center px-3 py-1 w-[20vw]'
+        >
+          Graj
+        </Link>
+        <Rank />
     </div>
   )
 }

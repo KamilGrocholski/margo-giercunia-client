@@ -1,3 +1,20 @@
+:root{
+  scrollbar-color: rgb(255 183 24)  rgb(33 40 56) !important;
+  scrollbar-width: thin !important;
+}
+
 body {
-  @apply bg-slate-800 text-white
+  @apply bg-texture-medium text-white
+}
+
+::-webkit-scrollbar {
+  @apply w-1 rounded-md
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-primary rounded-md
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-texture-light rounded-md
 }

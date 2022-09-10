@@ -32,7 +32,7 @@ module.exports = {
         success: '#51c264',
         texture: {
           light: '#212838',
-          medium: '#121725',
+          medium: '#191E2C',
           strong: '#121725',
         },
         rarities: {

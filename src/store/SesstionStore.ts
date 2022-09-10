@@ -1,10 +1,9 @@
 import create from 'zustand'
-
 export interface ISession {
     accessToken?: string
     setAccessToken: (accessToken?: string) => void
-    role?: string
-    setRole: (role?: string) => void
+    role?: 'admin' | 'user'
+    setRole: (role?: 'admin' | 'user') => void
 }
 
 const Session = create<ISession>(set => ({

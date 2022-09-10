@@ -6,6 +6,5 @@ import { IItem } from './itemsAPI'
 export const getRandomItems = async (monster?: string) => {
     if (!monster) return 
     const result = await axiosPrivate.get<IItem[]>(`/simulator/randomItems?monster=${ monster }`)
-    console.log(result)
     return result.data
 }

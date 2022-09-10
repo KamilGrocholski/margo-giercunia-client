@@ -7,10 +7,10 @@ import Simulator from './pages/Simulator/index'
 import LoginPage from './pages/LoginPage'
 import RegisterPage from './pages/RegisterPage'
 import LandingPage from './pages/LandingPage'
+import AdminPanel from './pages/AdminPanel'
 
 import MainLayout from './layouts/MainLayout'
 import Role from './components/Role'
-import AdminPanel from './pages/AdminPanel'
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -27,14 +27,20 @@ function App() {
       <Routes>
         <Route element={ <MainLayout /> }>
 
-            <Route element={ <Role roleRequired='admin' /> }>
-              <Route path='/admin' element={ <AdminPanel /> } />
+            <Route index element={ <LandingPage /> } />
+
+            <Route element={ <Role rolesRequired={ [undefined] } /> }>
+              <Route path='/rejestracja' element={ <RegisterPage /> } />
+              <Route path='/logowanie' element={ <LoginPage /> } />
             </Route>
 
-            <Route index element={ <LandingPage /> } />
-            <Route path='/symulator' element={ <Simulator /> } />
-            <Route path='/rejestracja' element={ <RegisterPage /> } />
-            <Route path='/logowanie' element={ <LoginPage /> } />
+            <Route element={ <Role rolesRequired={ ['admin'] } /> }>
+              <Route path='/admin' element={ <AdminPanel /> } />  
+            </Route>
+
+            <Route element={ <Role rolesRequired={ ['user', 'admin'] } /> }>
+              <Route path='/symulator' element={ <Simulator /> } />
+            </Route>
 
         </Route>
       </Routes>

@@ -26,7 +26,7 @@ export const CurrentMonster = () => {
         <button 
             disabled={ isLoading || isWindowOpen }
             onClick={ handleGetRandomItems }
-            className='relative flex flex-col items-center justify-between w-48 h-48 p-3 bg-gray-900 rounded-lg hover:outline hover:outline-cyan-500'
+            className='relative flex flex-col items-center justify-between shadow-black shadow drop-shadow-lg w-48 h-48 p-3 bg-texture-strong rounded-lg hover:outline hover:outline-primary'
         >
             <div className='flex flex-row justify-between space-x-3 w-full'> 
                 <div className='font-semibold text-md'>

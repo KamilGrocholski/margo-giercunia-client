@@ -1,13 +1,13 @@
 import { Navigate, Outlet } from "react-router-dom"
-import Session from "../store/SesstionStore"
+import Session, { ISession } from "../store/SesstionStore"
 
-const Role = ({ roleRequired }: { roleRequired?: 'admin' | 'user' }) => {
+const Role = ({ rolesRequired }: { rolesRequired: ISession['role'][] }) => {
 
     const { role } = Session()
-    
-  return (
+    console.log(role)
+  return (  
     <>
-        {roleRequired === role
+        {rolesRequired.some(rl => rl === role)
         ? <Outlet />
         : <Navigate to='/' />}
     </>

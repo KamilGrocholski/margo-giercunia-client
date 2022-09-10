@@ -9,13 +9,13 @@ const Simulator = () => {
     const { currentMonster, items, isWindowOpen } = useSimulator()
 
   return (
-    <div className='flex items-center justify-center min-w-screen min-h-screen flex-col space-y-12 border'>
-        <MonstersList />
+    <div className='flex items-center justify-center min-w-screen min-h-screen flex-col space-y-12'>
         {currentMonster &&
-        <div className='relative w-full h-full border flex items-center justify-center'>
+        <div className='relative w-full h-full flex items-center justify-center'>
             {items && isWindowOpen && <ItemsWindow items={ items } />}
             <Monster />
         </div>}
+        <MonstersList />
     </div>
   )
 }

@@ -1,25 +1,5 @@
 import useSimulator, { ISimulatorItem } from "../../../store/SimulatorStore"
-
-const MARGONEM_CONSTS = {
-    RARITIES: {
-        'common': {
-            full: 'Zwykły',
-            color: '#ffffff'
-        },
-        'rare': {
-            full: 'Rzadki',
-            color: '#e6cc80'
-        },
-        'heroic': {
-            full: 'Heroiczny',
-            color: '#0070dd'
-        },
-        'legendary': {
-            full: 'Legendarny',
-            color: '#ff8000'
-        }
-    }
-} as const
+import { MARGONEM_CONSTS } from "../../../consts/Margonem"
 
 export const Item = ({ item, n }: { item: ISimulatorItem, n: number }) => {
     const { openItem, items } = useSimulator() 
@@ -36,13 +16,13 @@ export const Item = ({ item, n }: { item: ISimulatorItem, n: number }) => {
             
             className={ `relative ${ items && !items[n].isOpen && 'hover:animate-pulse-bg-infinite' } 
             ${ item.rarity === 'legendary' ? 
-            'from-rarities-legendary/60 to-rarities-legendary' :
+            'from-rarities-legendary/50 to-rarities-legendary' :
             item.rarity === 'heroic' ?
-            'from-rarities-heroic/60 to-rarities-heroic' :
+            'from-rarities-heroic/50 to-rarities-heroic' :
             item.rarity === 'rare' ?
-            'from-rarities-rare/60 to-rarities-rare' :
+            'from-rarities-rare/50 to-rarities-rare' :
             'from-gray-500/30 to-gray-500/50'}
-             shadow-black flex items-center justify-center w-16 h-16 outline outline-1 outline-gray-700 rounded-lg bg-gray-900` }
+             shadow-black shadow flex items-center justify-center w-16 h-16 outline outline-1 outline-texture-light rounded-lg bg-texture-strong` }
         >
             {items && items[n] && items[n].isOpen
                 ? 
@@ -79,8 +59,8 @@ export const ItemsWindow =  ({ items }: {items: ISimulatorItem[] }) => {
     }
 
     return (
-        <div className='flex flex-col space-y-8 z-20 absolute top-0 right-1/5 left-1/5 h-fit items-center justify-center bg-gray-900/90 p-3'>
-            <div className='grid grid-cols-5 gap-3 h-full w-full'>
+        <div className='absolute bottom-0 z-20 flex flex-col items-center justify-center p-3 space-y-8 shadow-black shadow right-1/5 left-1/5 h-fit bg-texture-strong/80'>
+            <div className='grid w-full h-full grid-cols-5 gap-3'>
                 {items.map((item, i) => (
                     <Item 
                         key={ i }
@@ -91,7 +71,7 @@ export const ItemsWindow =  ({ items }: {items: ISimulatorItem[] }) => {
             </div>
             <button
                 onClick={ handleCloseWindow }  
-                className='p-3 border bg-gray-900/50'
+                className='px-3 py-1 rounded-md bg-primary/30'
             >
                 Zamknij
             </button>
