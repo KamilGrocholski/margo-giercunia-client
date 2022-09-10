@@ -16,14 +16,26 @@ export interface IUser {
 export const register = async ({ username, password }: { username: string, password: string }) => {
     const result = await axios.post<{ msg: string, status: string }>('/users/register', { username, password })
         .then(res => res.data)
-        .catch(err => err.response.data)
+        .catch(err => {
+            if (err.response) return err.response.data
+            if (err.request) return err.request
+            else {
+                return err.message
+            }
+        })
     return result
 }
 
 export const login = async ({ username, password }: { username: string, password: string }) => {
     const result = await axios.post<{ accessToken?: string, msg: string, status: string }>('/users/login', { username, password }, { withCredentials: true })
         .then(res => res.data)
-        .catch(err => err.response.data)
+        .catch(err => {
+            if (err.response) return err.response.data
+            if (err.request) return err.request
+            else {
+                return err.message
+            }
+        })
     return result
 }
 
