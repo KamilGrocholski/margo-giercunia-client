@@ -6,14 +6,14 @@ if (process.env.NODE_ENV === 'development') {
     baseURL = 'http://localhost:5000/api/v1'
 } 
 if (process.env.NODE_ENV === 'production') {
-    baseURL = `${ process.env.API_URL }/api/v1`
+    baseURL = `${ process.env.REACT_APP_API_URL as string }/api/v1`
 } 
 else {
     baseURL = 'http://localhost:5000/api/v1'
 }
 console.log(baseURL)
 console.log(process.env.NODE_ENV)
-console.log(process.env.API_URL)
+console.log(process.env.REACT_APP_API_URL)
 
 const instance = axios.create({
     baseURL: baseURL,
