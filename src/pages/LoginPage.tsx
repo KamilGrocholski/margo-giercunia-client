@@ -19,7 +19,7 @@ const LoginPage = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         const loginResponse = await login(formData)
-        if (!loginResponse?.accessToken) {
+        if (!loginResponse?.accessToken && loginResponse?.msg && loginResponse?.status) {
             setMsgStatus({
                 status: loginResponse.status,
                 msg: loginResponse.msg

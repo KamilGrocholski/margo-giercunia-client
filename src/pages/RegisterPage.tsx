@@ -13,6 +13,7 @@ const RegisterPage = () => {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault()
         const registerResponse = await register(formData)
+        if (registerResponse?.msg && registerResponse?.status)
         setMsgStatus({
             status: registerResponse.status,
             msg: registerResponse.msg
